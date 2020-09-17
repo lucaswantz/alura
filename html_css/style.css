@@ -225,6 +225,10 @@ td, th {
     line-height: 1.5em;
 }
 
+.itens:before{
+    content: "✱ ";
+}
+
 .itens:first-child {
     font-weight: bold;
 }
