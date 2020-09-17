@@ -94,9 +94,7 @@ footer {
     padding: 20px 0 0;
 }
 
-main {
-
-}
+main {}
 
 form {
     margin: 40px 0;
@@ -229,7 +227,7 @@ td, th {
     line-height: 1.5em;
 }
 
-.itens:before{
+.itens:before {
     content: "✱ ";
 }
 
@@ -255,22 +253,40 @@ td, th {
 }
 
 /* Seleciona os elementos paragrafos filhos diretos do elemento main*/
+
 /* main > p {
     background: red;
 } */
 
 /* Seleciona o primeiro elemento paragrafo irmão do elemento imagem */
+
 /* img + p {
     background: blue;
 } */
 
 /* Seleciona todos os elementos paragrafos irmãos do elemento imagem */
+
 /* img ~ p {
     background: yellow;
 } */
 
 /* Seleciona todos os elementos paragrafos que não são a missão do elemento principal */
+
 /* .principal p:not(#missao) {
     background: orange;
 } */
 
+@media screen and (max-width: 480px) {
+    .caixa, .principal, .conteudo-beneficios, .mapa-conteudo, .video, .produtos {
+        width: auto;
+    }
+    h1 {
+        text-align: center;
+    }
+    nav {
+        position: static;
+    }
+    .lista-beneficios, .imagem-beneficios, .produtos li {
+        width: 100%;
+    }
+}
