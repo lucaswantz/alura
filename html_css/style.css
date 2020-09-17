@@ -163,6 +163,8 @@ td, th {
     font-size: 2em;
     margin: 0 0 1em;
     clear: left;
+    /* Sombra de textos */
+    /* text-shadow: 2px 2px 5px #F00; */
 }
 
 .principal {
@@ -208,6 +210,8 @@ td, th {
 .beneficios {
     padding: 3em 0;
     background: #CCCCCC;
+    /* Sombra interna */
+    /* box-shadow: inset 0 0 30px #f00; */
 }
 
 .conteudo-beneficios {
@@ -235,9 +239,38 @@ td, th {
 
 .imagem-beneficios {
     width: 60%;
+    opacity: 1;
+    transition: 400ms;
+    box-shadow: 5px 5px 10px 0 #000000;
+    /* box-shadow: 5px 5px 10px 2px #000000; */
+}
+
+.imagem-beneficios:hover {
+    opacity: 0.5;
 }
 
 .video {
     width: 560px;
     margin: 2em auto;
 }
+
+/* Seleciona os elementos paragrafos filhos diretos do elemento main*/
+/* main > p {
+    background: red;
+} */
+
+/* Seleciona o primeiro elemento paragrafo irmão do elemento imagem */
+/* img + p {
+    background: blue;
+} */
+
+/* Seleciona todos os elementos paragrafos irmãos do elemento imagem */
+/* img ~ p {
+    background: yellow;
+} */
+
+/* Seleciona todos os elementos paragrafos que não são a missão do elemento principal */
+/* .principal p:not(#missao) {
+    background: orange;
+} */
+
