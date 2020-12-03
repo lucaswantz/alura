@@ -1,5 +1,7 @@
 <?php
 
+namespace Alura\Banco\Model;
+
 class CPF
 {
     private $numero;
@@ -19,7 +21,7 @@ class CPF
         $this->numero = $numero;
     }
 
-    public function recuperaNumero(): string
+    public function getNumero(): string
     {
         return $this->numero;
     }

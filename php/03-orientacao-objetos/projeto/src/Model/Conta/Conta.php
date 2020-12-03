@@ -1,5 +1,7 @@
 <?php
 
+namespace Alura\Banco\Model\Conta;
+
 class Conta
 {
     private $titular;
@@ -46,26 +48,26 @@ class Conta
             return;
         }
 
-        $this->sacar($valorATransferir);
-        $contaDestino->depositar($valorATransferir);
+        $this->saca($valorATransferir);
+        $contaDestino->deposita($valorATransferir);
     }
 
-    public function recuperaSaldo(): float
+    public function getSaldo(): float
     {
         return $this->saldo;
     }
 
-    public function recuperaNomeTitular(): string
+    public function getNomeTitular(): string
     {
-        return $this->titular->recuperaNome();
+        return $this->titular->getNome();
     }
 
-    public function recuperaCpfTitular(): string
+    public function getCpfTitular(): string
     {
-        return $this->titular->recuperaCpf();
+        return $this->titular->getCpf();
     }
 
-    public static function recuperaNumeroDeContas(): int
+    public static function getNumeroDeContas(): int
     {
         return self::$numeroDeContas;
     }
