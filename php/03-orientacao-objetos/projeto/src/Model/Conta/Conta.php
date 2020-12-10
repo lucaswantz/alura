@@ -2,37 +2,38 @@
 
 namespace Alura\Banco\Model\Conta;
 
-class Conta
-{
+abstract class Conta {
+
     private $titular;
-    private $saldo;
+    protected $saldo;
     private static $numeroDeContas = 0;
 
-    public function __construct(Titular $titular)
-    {
+    public function __construct(Titular $titular) {
         $this->titular = $titular;
         $this->saldo = 0;
 
         self::$numeroDeContas++;
     }
 
-    public function __destruct()
-    {
+    public function __destruct() {
         self::$numeroDeContas--;
     }
 
-    public function saca(float $valorASacar): void
-    {
-        if ($valorASacar > $this->saldo) {
+    abstract protected function getTarifaSaque(): float;
+
+    public function saca(float $valorASacar): void {
+        $tarifaSaque = $valorASacar * $this->getTarifaSaque();
+        $valorSaque = $valorASacar + $tarifaSaque;
+
+        if ($valorSaque > $this->saldo) {
             echo "Saldo indisponível";
             return;
         }
 
-        $this->saldo -= $valorASacar;
+        $this->saldo -= $valorSaque;
     }
 
-    public function deposita(float $valorADepositar): void
-    {
+    public function deposita(float $valorADepositar): void {
         if ($valorADepositar < 0) {
             echo "Valor precisa ser positivo";
             return;
@@ -41,34 +42,19 @@ class Conta
         $this->saldo += $valorADepositar;
     }
 
-    public function transfere(float $valorATransferir, Conta $contaDestino): void
-    {
-        if ($valorATransferir > $this->saldo) {
-            echo "Saldo indisponível";
-            return;
-        }
-
-        $this->saca($valorATransferir);
-        $contaDestino->deposita($valorATransferir);
-    }
-
-    public function getSaldo(): float
-    {
+    public function getSaldo(): float {
         return $this->saldo;
     }
 
-    public function getNomeTitular(): string
-    {
+    public function getNomeTitular(): string {
         return $this->titular->getNome();
     }
 
-    public function getCpfTitular(): string
-    {
+    public function getCpfTitular(): string {
         return $this->titular->getCpf();
     }
 
-    public static function getNumeroDeContas(): int
-    {
+    public static function getNumeroDeContas(): int {
         return self::$numeroDeContas;
     }
 }
