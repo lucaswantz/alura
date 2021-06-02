@@ -1,11 +1,11 @@
 <?php
 
-use Alura\Banco\Model\Conta\{ContaPoupanca, SaldoInsuficienteException, Titular};
+use Alura\Banco\Model\Conta\{ContaCorrente, SaldoInsuficienteException, Titular};
 use Alura\Banco\Model\{CPF, Endereco};
 
 require_once("autoload.php");
 
-$conta = new ContaPoupanca(
+$conta = new ContaCorrente(
     new Titular(
         new CPF("008.444.140-26"),
         "Lucas",
@@ -13,12 +13,11 @@ $conta = new ContaPoupanca(
     )
 );
 
-$conta->deposita(500);
-
 try {
-    $conta->saca(600);
-} catch (SaldoInsuficienteException $exception) {
-    echo $exception->getMessage();
+    $conta->deposita(-100);
+} catch (\InvalidArgumentException $exception) {
+    echo "Valor a depositar precisa ser positivo." . PHP_EOL;
 }
+
 
 echo $conta->getSaldo();
