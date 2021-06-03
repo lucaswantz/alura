@@ -6,20 +6,22 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\DomCrawler\Crawler;
 
-class Buscador {
+class Buscador
+{
+	private Client $httpClient;
+	private Crawler $DOMCrawler;
 
-	private $httpClient;
-	private $DOMCrawler;
-
-	public function __construct(ClientInterface $httpClient, Crawler $DOMCrawler) {
+	public function __construct(ClientInterface $httpClient, Crawler $DOMCrawler)
+	{
 		$this->httpClient = $httpClient;
 		$this->DOMCrawler = $DOMCrawler;
 	}
 
-	public function buscar(string $url) : array {
+	public function buscar(string $url): array
+	{
 		$resposta = $this->httpClient->request("GET", $url);
 
-		$html = $resposta->getBody();
+	    $html = $resposta->getBody();
  		$this->DOMCrawler->addHtmlContent($html);
 
 		$elementosCursos = $this->DOMCrawler->filter("span.card-curso__nome");
