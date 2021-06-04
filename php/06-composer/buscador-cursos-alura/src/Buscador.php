@@ -8,29 +8,29 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class Buscador
 {
-	private Client $httpClient;
-	private Crawler $DOMCrawler;
+    private Client $httpClient;
+    private Crawler $DOMCrawler;
 
-	public function __construct(ClientInterface $httpClient, Crawler $DOMCrawler)
-	{
-		$this->httpClient = $httpClient;
-		$this->DOMCrawler = $DOMCrawler;
-	}
+    public function __construct(ClientInterface $httpClient, Crawler $DOMCrawler)
+    {
+        $this->httpClient = $httpClient;
+        $this->DOMCrawler = $DOMCrawler;
+    }
 
-	public function buscar(string $url): array
-	{
-		$resposta = $this->httpClient->request("GET", $url);
+    public function buscar(string $url): array
+    {
+        $resposta = $this->httpClient->request("GET", $url);
 
-	    $html = $resposta->getBody();
- 		$this->DOMCrawler->addHtmlContent($html);
+        $html = $resposta->getBody();
+        $this->DOMCrawler->addHtmlContent($html);
 
-		$elementosCursos = $this->DOMCrawler->filter("span.card-curso__nome");
-		$cursos = [];
+        $elementosCursos = $this->DOMCrawler->filter("span.card-curso__nome");
+        $cursos = [];
 
-		foreach ($elementosCursos as $elemento) {
-			$cursos[] = $elemento->textContent;
-		}
+        foreach ($elementosCursos as $elemento) {
+            $cursos[] = $elemento->textContent;
+        }
 
-		return $cursos;
-	}
+        return $cursos;
+    }
 }

@@ -3,7 +3,7 @@
 namespace Alura\BuscadorDeCursos\Tests;
 
 use Alura\BuscadorDeCursos\Buscador;
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -37,7 +37,7 @@ class TestBuscadorDeCursos extends TestCase {
             ->method('getBody')
             ->willReturn($stream);
 
-        $httpClient = $this->createMock(ClientInterface::class);
+        $httpClient = $this->createMock(Client::class);
         $httpClient
             ->expects($this->once())
             ->method('request')
