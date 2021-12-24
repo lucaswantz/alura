@@ -2,18 +2,12 @@
 
 namespace Alura\Doctrine\Repository;
 
-use Alura\Doctrine\Entity\Aluno;
 use Doctrine\ORM\EntityRepository;
 
 class AlunoRepository extends EntityRepository {
 
 	public function buscaCursosPorAluno() {
-		$entityManager = $this->getEntityManager();
-
-		$classeAluno = Aluno::class;
-		$dql = "SELECT aluno, telefones, cursos FROM $classeAluno aluno JOIN aluno.telefones telefones JOIN aluno.cursos cursos";
-
-		$query = $entityManager->createQuery($dql);
+		$query = $this->createQueryBuilder('a')->leftJoin('a.telefones', 't')->leftJoin('a.cursos', 'c')->addSelect('t', 'c')->getQuery();
 		return $query->getResult();
 	}
 }
