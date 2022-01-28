@@ -3,9 +3,12 @@
 namespace Alura\Cursos\Controller;
 
 use Alura\Cursos\Entity\Curso;
+use Alura\Cursos\Helper\RenderizadorHTMLTrait;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
-class ListarCursosController extends HtmlController implements InterfaceControladorRequisicao {
+class ListarCursosController implements InterfaceControladorRequisicao {
+
+	use RenderizadorHTMLTrait;
 
 	private $repositorioDeCursos;
 

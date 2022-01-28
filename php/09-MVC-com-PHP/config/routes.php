@@ -1,11 +1,23 @@
 <?php
 
+use Alura\Cursos\Controller\ExclusaoController;
+use Alura\Cursos\Controller\FormularioEdicaoController;
+use Alura\Cursos\Controller\FormularioInsercaoController;
+use Alura\Cursos\Controller\FormularioLoginController;
+use Alura\Cursos\Controller\ListarCursosController;
+use Alura\Cursos\Controller\PersistenciaController;
+use Alura\Cursos\Controller\RealizarLoginController;
+use Alura\Cursos\Controller\RealizarLogoutController;
+
 $rotas = [
-	'/listar-cursos' => \Alura\Cursos\Controller\ListarCursosController::class,
-	'/novo-curso' => \Alura\Cursos\Controller\FormularioInsercaoController::class,
-	'/salvar-curso' => \Alura\Cursos\Controller\PersistenciaController::class,
-	'/excluir-curso' => \Alura\Cursos\Controller\ExclusaoController::class,
-	'/alterar-curso' => \Alura\Cursos\Controller\FormularioEdicaoController::class,
+	'/listar-cursos' => ListarCursosController::class,
+	'/novo-curso' => FormularioInsercaoController::class,
+	'/salvar-curso' => PersistenciaController::class,
+	'/excluir-curso' => ExclusaoController::class,
+	'/alterar-curso' => FormularioEdicaoController::class,
+	'/login' => FormularioLoginController::class,
+	'/realizar-login' => RealizarLoginController::class,
+	'/realizar-logout' => RealizarLogoutController::class,
 ];
 
 return $rotas;
