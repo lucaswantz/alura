@@ -10,6 +10,9 @@ class ListarCursosController implements InterfaceControladorRequisicao {
 
 	use RenderizadorHTMLTrait;
 
+	/**
+	 * @var \Doctrine\Common\Persistence\ObjectRepository
+	 */
 	private $repositorioDeCursos;
 
 	public function __construct() {
