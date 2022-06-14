@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class AvaliadorTest extends TestCase {
 
+	/** @var Avaliador */
 	private $leiloeiro;
 
 	public function setUp(): void {
@@ -96,6 +97,27 @@ class AvaliadorTest extends TestCase {
 		$leilao->recebeLance(new Lance($ana, 1500));
 
 		return ["ordem-aleatoria" => [$leilao]];
+	}
+
+	public function testLeilaoVazioNaoPodeSerAvaliado() {
+		$this->expectException(\DomainException::class);
+		$this->expectExceptionMessage("Não é possível avaliar leilão sem lances");
+
+		$leilao = new Leilao("Fusca Azul");
+		$this->leiloeiro->avalia($leilao);
+	}
+
+	public function testLeilaoFinalizadoNaoPodeSerAvaliado() {
+		$this->expectException(\DomainException::class);
+		$this->expectExceptionMessage("Leilão já finalizado");
+
+		$leilao = new Leilao("Fiat 147 0KM");
+		$ana = new Usuario('Ana');
+
+		$leilao->recebeLance(new Lance($ana, 2000));
+		$leilao->finaliza();
+
+		$this->leiloeiro->avalia($leilao);
 	}
 
 	public function entregaLeiloes() {
